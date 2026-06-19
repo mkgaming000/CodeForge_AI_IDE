@@ -1,0 +1,58 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace "com.codeforge.app"
+    compileSdk = flutter.compileSdkVersion
+
+    // AGP 8.3.2 requires NDK 23.1.7779620 or newer.
+    // flutter.ndkVersion resolves to the NDK version Flutter was built against.
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        // AGP 8.3.2 / Gradle 8.6 require Java 17 for compilation.
+        // The GitHub Actions workflow installs Temurin JDK 17.
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    defaultConfig {
+        applicationId = "com.codeforge.app"
+        // flutter_secure_storage requires API 23 (Android 6.0).
+        // MANAGE_EXTERNAL_STORAGE is available from API 30 but the app also
+        // supports the legacy READ/WRITE permissions (maxSdkVersion 29).
+        minSdk = 23
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        debug {
+            // Disable shrinking so the debug build mirrors production code paths.
+            minifyEnabled = false
+            shrinkResources = false
+        }
+        release {
+            // TODO: Replace the debug signing config with your own release keystore
+            // before publishing to the Play Store.  See SETUP.md for instructions.
+            signingConfig = signingConfigs.debug
+            minifyEnabled = false
+            shrinkResources = false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"),
+                          "proguard-rules.pro"
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CodeForge launcher icon foreground: a lightning-bolt "CF" monogram
+     in the brand accent color (#4F8EF7) on a transparent background.
+     Sized to 108dp as required by the adaptive icon spec. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer lightning bolt shape -->
+    <path
+        android:fillColor="#FF4F8EF7"
+        android:pathData="M62,18 L36,58 L52,58 L46,90 L74,50 L58,50 Z"/>
+
+    <!-- "C" letterform overlay (subtle white) -->
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M42,36 Q30,36 30,54 Q30,72 42,72 L50,72 L50,64 L44,64 Q38,64 38,54 Q38,44 44,44 L50,44 L50,36 Z"/>
+</vector>

@@ -1,0 +1,13 @@
+# This file is generated automatically by Flutter/Android Studio and should
+# NOT be committed to version control (see .gitignore).
+#
+# Copy this file to "local.properties" in the same folder and fill in the
+# paths for your machine, OR simply run `flutter pub get` / open the project
+# in Android Studio once — both will generate local.properties for you
+# automatically.
+
+sdk.dir=/path/to/your/Android/sdk
+flutter.sdk=/path/to/your/flutter/sdk
+
+# Optional, only needed if you use NDK-dependent plugins:
+# ndk.dir=/path/to/your/Android/sdk/ndk/<version>

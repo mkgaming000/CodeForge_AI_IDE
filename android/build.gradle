@@ -1,0 +1,47 @@
+// Root project build configuration — Flutter 3.19+ / AGP 8.3.2 style.
+//
+// IMPORTANT: Do NOT add a `buildscript { }` block here.
+// Plugin versions and classpath dependencies are now declared exclusively in
+// android/settings.gradle (via the `pluginManagement { }` + `plugins { }`
+// blocks). Keeping a `buildscript { classpath ... }` block alongside the new
+// settings.gradle approach causes Gradle 8.x to fail with duplicate plugin
+// registration errors.
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+// Redirect every subproject's build directory to <flutter_root>/build/<module>.
+//
+// WHY THIS IS REQUIRED:
+// flutter.groovy (the Flutter Gradle plugin) copies the generated APK to:
+//   ${project.buildDir}/outputs/flutter-apk/app-debug.apk
+// where project.buildDir refers to the :app module's build directory.
+//
+// The Flutter CLI tool (Dart side) then scans for the APK at:
+//   <flutter_root>/build/app/outputs/flutter-apk/app-debug.apk
+//
+// Without this redirect, Gradle places :app's buildDir at android/app/build,
+// so the APK lands in android/app/build/outputs/flutter-apk/ — a completely
+// different path from what the Flutter tool expects. Gradle reports
+// BUILD SUCCESSFUL but the Flutter CLI cannot find the APK and fails with:
+//   "Gradle build failed to produce an .apk file."
+//
+// Setting rootProject.buildDir = '../build' makes each subproject use:
+//   <android>/../build/<module>  =  <flutter_root>/build/<module>
+// so :app's buildDir becomes <flutter_root>/build/app, and the Flutter tool
+// finds the APK exactly where it looks.
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,6 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Flutter's debug/profile builds use this manifest overlay to enable
+         the VM service and Observatory/DevTools connections during
+         `flutter run`. INTERNET is already declared in the main manifest,
+         so no additional permissions are required here. -->
+</manifest>
